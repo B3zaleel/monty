@@ -62,5 +62,6 @@ char *read_word(char *str, int *offset)
 			word[i] = str[a + *offset];
 		word[i] = '\0';
 	}
+	*offset = len;
 	return (word);
 }

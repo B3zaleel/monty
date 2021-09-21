@@ -13,66 +13,36 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
-#ifndef NULL
-#define NULL ((void *)0)
-#endif
-/* #define WORD_SEPARATOR ' '; */
-/* #define COMMENT_CHARACTER = '#'; */
 
 /**
- * enum Operator_Types - The operator codes for this shell program.
- * OP_PUSH: The operator code for no operator
- * OP_PALL: The operator code for a logical AND character
- * OP_PINT: The operator code for a logical OR character
- * OP_POP: The operator code for a command separator character
- * OP_SWAP:
- * OP_ADD:
- * OP_NOP:
- * OP_SUB:
- * OP_DIV:
- * OP_DIV:
- * OP_MOD:
- * OP_PCHAR:
- * OP_PSTR:
- * OP_ROTL:
- * OP_ROTR:
- * OP_STACK:
- * OP_QUEUE:
+ * enum Date_Format_Modes - The data format modes for this program.
+ * DF_LIFO: The data format code for a LIFO structure (like a stack)
+ * DF_FIFO: The data format code for a FIFO structure (like a queue)
  */
-enum Operator_Types
+enum Date_Format_Modes
 {
-	OP_PUSH,
-	OP_PALL,
-	OP_PINT,
-	OP_POP,
-	OP_SWAP,
-	OP_ADD,
-	OP_NOP,
-	OP_SUB,
-	OP_DIV,
-	OP_MUL,
-	OP_MOD,
-	OP_PCHAR,
-	OP_PSTR,
-	OP_ROTL,
-	OP_ROTR,
-	OP_STACK,
-	OP_QUEUE
+	/* The data format code for a LIFO structure (like a stack) */
+	DF_LIFO,
+	/* The data format code for a FIFO structure (like a queue) */
+	DF_FIFO
 };
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
- * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
+ * @n: The integer stored at the node
+ * @prev: A pointer to the previous element of the stack (or queue)
+ * @next: A Pointer to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
 typedef struct stack_s
 {
+	/* The integer stored at the node */
 	int n;
+	/* A pointer to the previous element of the stack (or queue) */
 	struct stack_s *prev;
+	/* A Pointer to the next element of the stack (or queue) */
 	struct stack_s *next;
 } stack_t;
 
@@ -92,13 +62,9 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-struct opcode_id_s {
-	char *name;
-	char id;
-};
+/* Main file functions */
 
-/* Main functions */
-
+char *get_data_mode();
 char **get_lines();
 void exit_program(int status);
 void clean_up_program();
@@ -123,13 +89,24 @@ void mty_op_rotr(stack_t **stack, unsigned int line_number);
 void mty_op_stack(stack_t **stack, unsigned int line_number);
 void mty_op_queue(stack_t **stack, unsigned int line_number);
 
-/* reading helpers */
+/* Reading helpers */
 
 char **read_file(char *path, int *lines_count);
 char *read_word(char *str, int *offset);
 
+/* Executor */
+
 instruction_t *get_opcode_handlers();
 void execute_line(char *line, int line_num, stack_t **stack_values);
+
+/* Stack helpers */
+
+void push(stack_t **stack, int n);
+int pop(stack_t **stack);
+int dequeue(stack_t **stack);
+void enqueue(stack_t **stack, int n);
+stack_t *get_top_element(stack_t **stack);
+stack_t *get_bottom_element(stack_t **stack);
 
 /* Memory helpers */
 
@@ -142,5 +119,9 @@ void mem_set(char *str, int n, char c);
 int str_len(const char *str);
 char *str_cat(char *left, char *right, char can_free);
 char **str_split(char *str, char c, int *len_out, char can_free);
+
+/* Data validators */
+
+char is_ascii_char(int c);
 
 #endif

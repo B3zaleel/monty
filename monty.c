@@ -4,6 +4,7 @@ static stack_t *Values;
 static char **Lines;
 static int Lines_Count;
 static int Current_Line;
+static char Data_Format;
 
 /**
  * main - A Monty ByteCode interpreter
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
 {
 	if (argc == 2)
 	{
+		Data_Format = DF_LIFO;
 		Lines = read_file(argv[1], &Lines_Count);
 		while (Current_Line < Lines_Count)
 		{
@@ -30,6 +32,11 @@ int main(int argc, char *argv[])
 	}
 	clean_up_program();
 	return (EXIT_SUCCESS);
+}
+
+char *get_data_mode()
+{
+	return (&Data_Format);
 }
 
 /**
@@ -47,6 +54,7 @@ char **get_lines()
  */
 void clean_up_program()
 {
+	stack_t *node = Values, *tmp = NULL;
 	int i;
 
 	if (Lines != NULL)
@@ -58,6 +66,17 @@ void clean_up_program()
 		}
 		if (Lines != NULL)
 			free(Lines);
+	}
+	if (node != NULL)
+	{
+		while ((node != NULL) && (node-> prev != NULL))
+			node = node->prev;
+		while (node != NULL)
+		{
+			tmp = node->next;
+			free(node);
+			node = tmp;
+		}
 	}
 }
 
