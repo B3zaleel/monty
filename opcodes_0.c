@@ -1,51 +1,56 @@
 #include "monty.h"
 
 /**
- * push -
+ * mty_op_push -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void push(stack_t **stack, unsigned int line_number)
+void mty_op_push(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * pall -
+ * mty_op_pall -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void pall(stack_t **stack, unsigned int line_number)
+void mty_op_pall(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * pint -
+ * mty_op_pint -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void pint(stack_t **stack, unsigned int line_number)
+void mty_op_pint(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * pop -
+ * mty_op_pop -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void pop(stack_t **stack, unsigned int line_number)
+void mty_op_pop(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * swap -
+ * mty_op_swap -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void swap(stack_t **stack, unsigned int line_number)
+void mty_op_swap(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }

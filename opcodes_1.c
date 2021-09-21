@@ -1,51 +1,59 @@
 #include "monty.h"
 
 /**
- * add -
+ * mty_op_add -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void add(stack_t **stack, unsigned int line_number)
+void mty_op_add(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * nop -
+ * mty_op_nop -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void nop(stack_t **stack, unsigned int line_number)
+void mty_op_nop(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * sub -
+ * mty_op_sub -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void sub(stack_t **stack, unsigned int line_number)
+void mty_op_sub(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
 
 /**
- * div -
+ * mty_op_div -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void div(stack_t **stack, unsigned int line_number)
+void mty_op_div(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
+	fprintf(stderr, "L%d: division by zero\n", line_number);
+	fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+	exit_program(EXIT_FAILURE);
 }
 
 /**
- * mul -
+ * mty_op_mul -
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
-void mul(stack_t **stack, unsigned int line_number)
+void mty_op_mul(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
+	(void)stack;
 }
