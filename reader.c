@@ -11,11 +11,11 @@ char **read_file(char *path, int *lines_count)
 {
 	char buf[1024] = {0}, stop = FALSE, *str = NULL;
 	struct stat file_stat;
-	int fd, n;
+	int fd = -1, n = 0;
 
 	stat(path, &file_stat);
 	fd = open(path, O_RDONLY);
-	if (S_ISREG(file_stat.st_mode) && (fd >= 0))
+	if ((fd >= 0) && S_ISREG(file_stat.st_mode))
 	{
 		while (!stop)
 		{
@@ -31,11 +31,11 @@ char **read_file(char *path, int *lines_count)
 	}
 	else
 	{
+		if (fd >= 0)
+			close(fd);
 		fprintf(stderr, "Error: Can't open file %s\n", path);
 		exit_program(EXIT_FAILURE);
 	}
-	if (fd >= 0)
-		close(fd);
 	return (NULL);
 }
 
