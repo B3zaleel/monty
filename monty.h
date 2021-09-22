@@ -124,5 +124,6 @@ char **str_split(char *str, char c, int *len_out, char can_free);
 
 char is_integer(char *str);
 char is_ascii_char(int c);
+char is_whitespace(char c);
 
 #endif

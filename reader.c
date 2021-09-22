@@ -53,8 +53,8 @@ char *read_word(char *str, int *offset)
 
 	for (i = 0; (str != NULL) && (str[i + *offset] != '\0'); i++)
 	{
-		a = (str[i + *offset] != ' ') && (a == -1) ? i : a;
-		if ((a != -1) && (str[i + *offset] == ' '))
+		a = !is_whitespace(str[i + *offset]) && (a == -1) ? i : a;
+		if ((a != -1) && is_whitespace(str[i + *offset]))
 			break;
 	}
 	len = a > -1 ? i - a : 0;

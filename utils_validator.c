@@ -39,3 +39,20 @@ char is_ascii_char(int c)
 {
 	return ((c >= 0) && (c <= 127) ? TRUE : FALSE);
 }
+
+/**
+ * is_whitespace - Checks if the given character is a whitespace character
+ * @c: The character to check
+ *
+ * Return: 1 or 0
+ */
+char is_whitespace(char c)
+{
+	int i;
+	char set[] = {' ', '\t', '\r', '\n'};
+
+	for (i = 0; i < 4; i++)
+		if (c == set[i])
+			return (TRUE);
+	return (FALSE);
+}
