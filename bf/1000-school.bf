@@ -1,3 +1,4 @@
+#!/usr/bin/bf
 ++++++++ initialize c0 to 8
 [ while c0
 	>++++++++++ increment c1 by 10
