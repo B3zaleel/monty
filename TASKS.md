@@ -13,8 +13,8 @@
 + [x] 10\. Implement comments.
 + [x] 11\. Implement the `pchar` opcode.
 + [x] 12\. Implement the `pstr` opcode.
-+ [ ] 13\. Implement the `rotl` opcode.
-+ [ ] 14\. Implement the `rotr` opcode.
++ [x] 13\. Implement the `rotl` opcode.
++ [x] 14\. Implement the `rotr` opcode.
 + [x] 15\. Implement the `stack` and `queue` opcodes.
 + [x] 16\. Brainf\*ck <br/>_**[bf/1000-school.bf](bf/1000-school.bf)**_ contains a Brainf\*ck script that prints `School`, followed by a new line.
 + [x] 17\. Add two digits <br/>_**[bf/1001-add.bf](bf/1001-add.bf)**_ adds two digits given by the user.

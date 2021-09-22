@@ -113,23 +113,77 @@ void mty_op_pstr(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mty_op_rotl -
+ * mty_op_rotl - Rotates the stack to the top
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
 void mty_op_rotl(stack_t **stack, unsigned int line_number)
 {
+	char data_mode = *get_data_mode();
+	stack_t *top = NULL, *bottom = NULL;
+
+	if ((stack != NULL) && (*stack != NULL))
+	{
+		top = get_top_element(stack);
+		bottom = get_bottom_element(stack);
+		if (data_mode == DF_FIFO)
+		{
+			if ((top != NULL) && (bottom != NULL) && (top != bottom))
+			{
+				bottom->prev->next = NULL;
+				bottom->next = top;
+				bottom->prev = NULL;
+				top->prev = bottom;
+			}
+		}
+		else if (data_mode == DF_LIFO)
+		{
+			if ((top != NULL) && (bottom != NULL) && (top != bottom))
+			{
+				top->prev->next = NULL;
+				top->next = bottom;
+				top->prev = NULL;
+				bottom->prev = top;
+			}
+		}
+	}
 	(void)line_number;
-	(void)stack;
 }
 
 /**
- * mty_op_rotr -
+ * mty_op_rotr - Rotates the stack to the bottom
  * @stack: The pointer to the stack of data
  * @line_number: The current line number
  */
 void mty_op_rotr(stack_t **stack, unsigned int line_number)
 {
+	char data_mode = *get_data_mode();
+	stack_t *top = NULL, *bottom = NULL;
+
+	if ((stack != NULL) && (*stack != NULL))
+	{
+		top = get_top_element(stack);
+		bottom = get_bottom_element(stack);
+		if (data_mode == DF_FIFO)
+		{
+			if ((top != NULL) && (bottom != NULL) && (top != bottom))
+			{
+				top->next->prev = NULL;
+				bottom->next = top;
+				top->next = NULL;
+				top->prev = bottom;
+			}
+		}
+		else if (data_mode == DF_LIFO)
+		{
+			if ((top != NULL) && (bottom != NULL) && (top != bottom))
+			{
+				bottom->next->prev = NULL;
+				top->next = bottom;
+				bottom->next = NULL;
+				bottom->prev = top;
+			}
+		}
+	}
 	(void)line_number;
-	(void)stack;
 }
