@@ -5,7 +5,7 @@
  *
  * Return: An array of instructions supported by this program
  */
-instruction_t *get_opcode_handlers()
+instruction_t *get_opcode_handlers(void)
 {
 	static instruction_t handlers[] = {
 		{"push", mty_op_push},

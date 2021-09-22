@@ -14,7 +14,7 @@ void mty_op_push(stack_t **stack, unsigned int line_number)
 	opname = read_word(line, &o);
 	arg = read_word(line, &o);
 	free(opname);
-	if (arg != NULL)
+	if ((arg != NULL) && is_integer(arg))
 	{
 		arg_int = atoi(arg);
 		free(arg);
