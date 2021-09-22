@@ -49,4 +49,4 @@ push 72
 pchar
 ```
 
-To see more samples, visit [here](./bf)
+To see more samples, visit [here](./samples)
