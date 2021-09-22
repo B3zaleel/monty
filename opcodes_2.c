@@ -55,11 +55,10 @@ void mty_op_mod(stack_t **stack, unsigned int line_number)
  */
 void mty_op_pchar(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node = NULL;
+	stack_t *node = get_top_element(stack);
 
-	if ((stack != NULL) && (*stack != NULL))
+	if (node != NULL)
 	{
-		node = get_top_element(stack);
 		if (is_ascii_char(node->n))
 		{
 			printf("%c\n", node->n);
