@@ -30,6 +30,8 @@ void mty_op_push(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
+		if (arg != NULL)
+			free(arg);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit_program(EXIT_FAILURE);
 	}
