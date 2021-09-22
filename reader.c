@@ -14,7 +14,8 @@ char **read_file(char *path, int *lines_count)
 	int fd, n;
 
 	stat(path, &file_stat);
-	if (S_ISREG(file_stat.st_mode) && (fd = open(path, O_RDONLY)) && (fd >= 0))
+	fd = open(path, O_RDONLY);
+	if (S_ISREG(file_stat.st_mode) && (fd >= 0))
 	{
 		while (!stop)
 		{
@@ -33,6 +34,8 @@ char **read_file(char *path, int *lines_count)
 		fprintf(stderr, "Error: Can't open file %s\n", path);
 		exit_program(EXIT_FAILURE);
 	}
+	if (fd >= 0)
+		close(fd);
 	return (NULL);
 }
 

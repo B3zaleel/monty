@@ -33,7 +33,6 @@ void push(stack_t **stack, int n)
 /**
  * pop - Removes an item at the top of the given stack
  * @stack: The pointer to the stack of values
- * @n: The data stored by the stack's new item
  *
  * Return: The data stored by the removed item if there were any
  */
@@ -62,7 +61,6 @@ int pop(stack_t **stack)
 /**
  * dequeue - Removes an item from the front of the given stack-like queue
  * @stack: The pointer to the stack of values
- * @n: The data stored by the stack's new item
  *
  * Return: The data stored by the removed item if there were any
  */

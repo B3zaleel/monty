@@ -118,13 +118,9 @@ void mty_op_div(stack_t **stack, unsigned int line_number)
 	{
 		top0 = get_top_element(stack);
 		if (data_mode == DF_FIFO)
-		{
 			top1 = top0->next;
-		}
 		else if (data_mode == DF_LIFO)
-		{
 			top1 = top0->prev;
-		}
 		if (top1 != NULL)
 		{
 			if (top0->n == 0)

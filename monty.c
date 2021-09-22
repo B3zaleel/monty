@@ -34,7 +34,12 @@ int main(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
-char *get_data_mode()
+/**
+ * get_data_mode - Returns a pointer to the interpreter's mode flag
+ *
+ * Return: A pointer to the interpreter's mode flag
+ */
+char *get_data_mode(void)
 {
 	return (&Data_Format);
 }
@@ -44,7 +49,7 @@ char *get_data_mode()
  *
  * Return: The lines of the current file
  */
-char **get_lines()
+char **get_lines(void)
 {
 	return (Lines);
 }
@@ -52,7 +57,7 @@ char **get_lines()
 /**
  * clean_up_program - Frees dynamically allocated memory blocks
  */
-void clean_up_program()
+void clean_up_program(void)
 {
 	stack_t *node = Values, *tmp = NULL;
 	int i;
@@ -69,7 +74,7 @@ void clean_up_program()
 	}
 	if (node != NULL)
 	{
-		while ((node != NULL) && (node-> prev != NULL))
+		while ((node != NULL) && (node->prev != NULL))
 			node = node->prev;
 		while (node != NULL)
 		{
