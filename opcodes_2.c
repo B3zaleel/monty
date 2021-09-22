@@ -26,7 +26,7 @@ void mty_op_mod(stack_t **stack, unsigned int line_number)
 				fprintf(stderr, "L%d: division by zero\n", line_number);
 				exit_program(EXIT_FAILURE);
 			}
-			result = top1->n / top0->n;
+			result = top1->n % top0->n;
 			if (data_mode == DF_FIFO)
 			{
 				dequeue(stack);
