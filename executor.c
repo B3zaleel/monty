@@ -44,7 +44,7 @@ void execute_line(char *line, int line_num, stack_t **stack_values)
 
 	if (opcode != NULL)
 	{
-		if (opcode[0] != '#')
+		if ((opcode[0] != '#') && (opcode[0] != '\0'))
 		{
 			for (i = 0; opcode_handlers[i].opcode != NULL; i++)
 			{

@@ -48,7 +48,7 @@ char **read_file(char *path, int *lines_count)
  */
 char *read_word(char *str, int *offset)
 {
-	int i, a = -1, len;
+	int i = 0, a = -1, len;
 	char *word = NULL;
 
 	for (i = 0; (str != NULL) && (str[i + *offset] != '\0'); i++)
@@ -57,7 +57,7 @@ char *read_word(char *str, int *offset)
 		if ((a != -1) && (str[i + *offset] == ' '))
 			break;
 	}
-	len = i - a;
+	len = a > -1 ? i - a : 0;
 	if (len > 0)
 	{
 		word = _realloc(word, 0, sizeof(char) * (len + 1));
