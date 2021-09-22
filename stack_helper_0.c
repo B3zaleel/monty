@@ -51,6 +51,8 @@ int pop(stack_t **stack)
 			val = node->n;
 			if (node->prev != NULL)
 				node->prev->next = NULL;
+			if ((node->prev == NULL) && (node->next == NULL))
+				*stack = NULL;
 			free(node);
 			node = NULL;
 		}
