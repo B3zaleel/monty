@@ -91,7 +91,7 @@ void mty_op_pstr(stack_t **stack, unsigned int line_number)
 	if (stack != NULL)
 	{
 		node = get_top_element(stack);
-		while ((node != NULL) && is_ascii_char(node->n) && node->n != 0)
+		while ((node != NULL) && is_ascii_char(node->n) && (node->n != 0))
 		{
 			printf("%c", node->n);
 			if (data_mode == DF_FIFO)
