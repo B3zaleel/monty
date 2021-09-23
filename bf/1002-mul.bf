@@ -15,7 +15,7 @@ initializing c0 to 0's character code
 	> [ while c2
 		>+ increment c3 by 1
 		>+ increment c4 by 1
-		<<- decrement c4 by 1
+		<<- decrement c2 by 1
 	]
 	>> [ while c4
 		<<+ increment c2

@@ -89,8 +89,8 @@ copy c6 to c11 and initialize the conditional section
 	<<<<<<<< jump to c1
 	++++++++ set c1 to 8
 	[ while c1
-		>>>>>>++++++ jump to c6 and increment it by 6
-		<<<<<<- jump to c1 and decrement it by 1
+		>>>>>++++++ jump to c6 and increment it by 6
+		<<<<<- jump to c1 and decrement it by 1
 	]
 	# end else condition's body
 	>>>>>>>>>- jump to c10 and decrement it to 0 (prevents the if section from executing)
