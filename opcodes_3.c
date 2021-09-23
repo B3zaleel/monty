@@ -7,9 +7,24 @@
  */
 void mty_op_stack(stack_t **stack, unsigned int line_number)
 {
+	char data_mode = *get_data_mode();
+	stack_t *top_s = NULL, *top_q = NULL, *tmp_n = NULL;
+	int tmp;
+
 	(void)line_number;
-	(void)stack;
-	*get_data_mode() = DF_LIFO;
+	if (data_mode == DF_FIFO)
+	{
+		top_q = get_top_element(stack);
+		*get_data_mode() = DF_LIFO;
+		top_s = get_top_element(stack);
+		if ((top_q != NULL) && (top_s != NULL))
+		{
+			printf("stack switch-> queue_front: %d, stack_top: %d\n", top_q->n, top_s->n);
+			tmp = top_q->n;
+			top_q->n = top_s->n;
+			top_s->n = tmp;
+		}
+	}
 }
 
 /**
@@ -19,7 +34,23 @@ void mty_op_stack(stack_t **stack, unsigned int line_number)
  */
 void mty_op_queue(stack_t **stack, unsigned int line_number)
 {
+	char data_mode = *get_data_mode();
+	stack_t *top_s = NULL, *top_q = NULL;
+	int tmp;
+
 	(void)line_number;
-	(void)stack;
-	*get_data_mode() = DF_FIFO;
+	if (data_mode == DF_LIFO)
+	{
+		top_s = get_top_element(stack);
+		*get_data_mode() = DF_FIFO;
+		top_q = get_top_element(stack);
+		if ((top_s != NULL) && (top_q != NULL))
+		{
+			/* printf("queue switch-> stack_top: %d,
+			queue_front: %d\n", top_s->n, top_q->n); */
+			tmp = top_q->n;
+			top_q->n = top_s->n;
+			top_s->n = tmp;
+		}
+	}
 }
