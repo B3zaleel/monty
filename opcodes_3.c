@@ -8,7 +8,7 @@
 void mty_op_stack(stack_t **stack, unsigned int line_number)
 {
 	char data_mode = *get_data_mode();
-	stack_t *top_s = NULL, *top_q = NULL, *tmp_n = NULL;
+	stack_t *top_s = NULL, *top_q = NULL;
 	int tmp;
 
 	(void)line_number;
