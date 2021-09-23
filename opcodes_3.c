@@ -19,7 +19,6 @@ void mty_op_stack(stack_t **stack, unsigned int line_number)
 		top_s = get_top_element(stack);
 		if ((top_q != NULL) && (top_s != NULL))
 		{
-			printf("stack switch-> queue_front: %d, stack_top: %d\n", top_q->n, top_s->n);
 			tmp = top_q->n;
 			top_q->n = top_s->n;
 			top_s->n = tmp;
@@ -46,8 +45,6 @@ void mty_op_queue(stack_t **stack, unsigned int line_number)
 		top_q = get_top_element(stack);
 		if ((top_s != NULL) && (top_q != NULL))
 		{
-			/* printf("queue switch-> stack_top: %d,
-			queue_front: %d\n", top_s->n, top_q->n); */
 			tmp = top_q->n;
 			top_q->n = top_s->n;
 			top_s->n = tmp;
