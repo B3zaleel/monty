@@ -7,32 +7,18 @@
  */
 void mty_op_add(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int result = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-		{
-			top1 = top0->next;
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			top1 = top0->prev;
-		}
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			result = top0->n + top1->n;
-			if (data_mode == DF_FIFO)
-			{
-				dequeue(stack);
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				pop(stack);
-			}
+			pop(stack);
 			top0 = get_top_element(stack);
 			top0->n = result;
 			error = FALSE;
@@ -64,32 +50,18 @@ void mty_op_nop(stack_t **stack, unsigned int line_number)
  */
 void mty_op_sub(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int result = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-		{
-			top1 = top0->next;
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			top1 = top0->prev;
-		}
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			result = top1->n - top0->n;
-			if (data_mode == DF_FIFO)
-			{
-				dequeue(stack);
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				pop(stack);
-			}
+			pop(stack);
 			top0 = get_top_element(stack);
 			top0->n = result;
 			error = FALSE;
@@ -110,17 +82,14 @@ void mty_op_sub(stack_t **stack, unsigned int line_number)
  */
 void mty_op_div(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int result = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-			top1 = top0->next;
-		else if (data_mode == DF_LIFO)
-			top1 = top0->prev;
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			if (top0->n == 0)
@@ -129,14 +98,7 @@ void mty_op_div(stack_t **stack, unsigned int line_number)
 				exit_program(EXIT_FAILURE);
 			}
 			result = top1->n / top0->n;
-			if (data_mode == DF_FIFO)
-			{
-				dequeue(stack);
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				pop(stack);
-			}
+			pop(stack);
 			top0 = get_top_element(stack);
 			top0->n = result;
 			error = FALSE;
@@ -157,32 +119,18 @@ void mty_op_div(stack_t **stack, unsigned int line_number)
  */
 void mty_op_mul(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int result = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-		{
-			top1 = top0->next;
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			top1 = top0->prev;
-		}
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			result = top0->n * top1->n;
-			if (data_mode == DF_FIFO)
-			{
-				dequeue(stack);
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				pop(stack);
-			}
+			pop(stack);
 			top0 = get_top_element(stack);
 			top0->n = result;
 			error = FALSE;

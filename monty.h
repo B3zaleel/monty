@@ -103,7 +103,6 @@ void execute_line(char *line, int line_num, stack_t **stack_values);
 
 void push(stack_t **stack, int n);
 int pop(stack_t **stack);
-int dequeue(stack_t **stack);
 void enqueue(stack_t **stack, int n);
 stack_t *get_top_element(stack_t **stack);
 stack_t *get_bottom_element(stack_t **stack);

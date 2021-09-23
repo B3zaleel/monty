@@ -45,7 +45,6 @@ void mty_op_push(stack_t **stack, unsigned int line_number)
  */
 void mty_op_pall(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode();
 	stack_t *node = NULL;
 
 	if (stack != NULL)
@@ -54,14 +53,7 @@ void mty_op_pall(stack_t **stack, unsigned int line_number)
 		while ((node != NULL))
 		{
 			printf("%d\n", node->n);
-			if (data_mode == DF_FIFO)
-			{
-				node = node->next;
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				node = node->prev;
-			}
+			node = node->prev;
 		}
 	}
 	(void)line_number;
@@ -101,18 +93,9 @@ void mty_op_pint(stack_t **stack, unsigned int line_number)
  */
 void mty_op_pop(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode();
-
 	if ((stack != NULL) && (*stack != NULL))
 	{
-		if (data_mode == DF_FIFO)
-		{
-			dequeue(stack);
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			pop(stack);
-		}
+		pop(stack);
 	}
 	else
 	{
@@ -128,21 +111,14 @@ void mty_op_pop(stack_t **stack, unsigned int line_number)
  */
 void mty_op_swap(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int tmp = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-		{
-			top1 = top0->next;
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			top1 = top0->prev;
-		}
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			tmp = top1->n;

@@ -9,7 +9,7 @@
  */
 stack_t *get_top_element(stack_t **stack)
 {
-	char data_mode = *get_data_mode(), stop = FALSE;
+	char stop = FALSE;
 	stack_t *node = NULL;
 
 	if (stack != NULL)
@@ -17,16 +17,8 @@ stack_t *get_top_element(stack_t **stack)
 		node = *stack;
 		while ((node != NULL) && (!stop))
 		{
-			if (data_mode == DF_FIFO)
-			{
-				stop = node->prev == NULL ? TRUE : FALSE;
-				node = node->prev == NULL ? node : node->prev;
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				stop = node->next == NULL ? TRUE : FALSE;
-				node = node->next == NULL ? node : node->next;
-			}
+			stop = node->next == NULL ? TRUE : FALSE;
+			node = node->next == NULL ? node : node->next;
 		}
 	}
 	return (node);
@@ -41,7 +33,7 @@ stack_t *get_top_element(stack_t **stack)
  */
 stack_t *get_bottom_element(stack_t **stack)
 {
-	char data_mode = *get_data_mode(), stop = FALSE;
+	char stop = FALSE;
 	stack_t *node = NULL;
 
 	if (stack != NULL)
@@ -49,16 +41,8 @@ stack_t *get_bottom_element(stack_t **stack)
 		node = *stack;
 		while ((node != NULL) && (!stop))
 		{
-			if (data_mode == DF_FIFO)
-			{
-				stop = node->next == NULL ? TRUE : FALSE;
-				node = node->next == NULL ? node : node->next;
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				stop = node->prev == NULL ? TRUE : FALSE;
-				node = node->prev == NULL ? node : node->prev;
-			}
+			stop = node->prev == NULL ? TRUE : FALSE;
+			node = node->prev == NULL ? node : node->prev;
 		}
 	}
 	return (node);

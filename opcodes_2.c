@@ -8,17 +8,14 @@
  */
 void mty_op_mod(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode(), error = TRUE;
+	char error = TRUE;
 	stack_t *top0 = NULL, *top1 = NULL;
 	int result = 0;
 
 	if (stack != NULL && (*stack != NULL))
 	{
 		top0 = get_top_element(stack);
-		if (data_mode == DF_FIFO)
-			top1 = top0->next;
-		else if (data_mode == DF_LIFO)
-			top1 = top0->prev;
+		top1 = top0->prev;
 		if (top1 != NULL)
 		{
 			if (top0->n == 0)
@@ -27,14 +24,7 @@ void mty_op_mod(stack_t **stack, unsigned int line_number)
 				exit_program(EXIT_FAILURE);
 			}
 			result = top1->n % top0->n;
-			if (data_mode == DF_FIFO)
-			{
-				dequeue(stack);
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				pop(stack);
-			}
+			pop(stack);
 			top0 = get_top_element(stack);
 			top0->n = result;
 			error = FALSE;
@@ -84,7 +74,6 @@ void mty_op_pchar(stack_t **stack, unsigned int line_number)
  */
 void mty_op_pstr(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode();
 	stack_t *node = NULL;
 
 	if (stack != NULL)
@@ -93,14 +82,7 @@ void mty_op_pstr(stack_t **stack, unsigned int line_number)
 		while ((node != NULL) && is_ascii_char(node->n) && (node->n != 0))
 		{
 			printf("%c", node->n);
-			if (data_mode == DF_FIFO)
-			{
-				node = node->next;
-			}
-			else if (data_mode == DF_LIFO)
-			{
-				node = node->prev;
-			}
+			node = node->prev;
 		}
 	}
 	printf("\n");
@@ -114,32 +96,18 @@ void mty_op_pstr(stack_t **stack, unsigned int line_number)
  */
 void mty_op_rotl(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode();
 	stack_t *top = NULL, *bottom = NULL;
 
 	if ((stack != NULL) && (*stack != NULL))
 	{
 		top = get_top_element(stack);
 		bottom = get_bottom_element(stack);
-		if (data_mode == DF_FIFO)
+		if ((top != NULL) && (bottom != NULL) && (top != bottom))
 		{
-			if ((top != NULL) && (bottom != NULL) && (top != bottom))
-			{
-				bottom->prev->next = NULL;
-				bottom->next = top;
-				bottom->prev = NULL;
-				top->prev = bottom;
-			}
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			if ((top != NULL) && (bottom != NULL) && (top != bottom))
-			{
-				top->prev->next = NULL;
-				top->next = bottom;
-				top->prev = NULL;
-				bottom->prev = top;
-			}
+			top->prev->next = NULL;
+			top->next = bottom;
+			top->prev = NULL;
+			bottom->prev = top;
 		}
 	}
 	(void)line_number;
@@ -152,32 +120,18 @@ void mty_op_rotl(stack_t **stack, unsigned int line_number)
  */
 void mty_op_rotr(stack_t **stack, unsigned int line_number)
 {
-	char data_mode = *get_data_mode();
 	stack_t *top = NULL, *bottom = NULL;
 
 	if ((stack != NULL) && (*stack != NULL))
 	{
 		top = get_top_element(stack);
 		bottom = get_bottom_element(stack);
-		if (data_mode == DF_FIFO)
+		if ((top != NULL) && (bottom != NULL) && (top != bottom))
 		{
-			if ((top != NULL) && (bottom != NULL) && (top != bottom))
-			{
-				top->next->prev = NULL;
-				bottom->next = top;
-				top->next = NULL;
-				top->prev = bottom;
-			}
-		}
-		else if (data_mode == DF_LIFO)
-		{
-			if ((top != NULL) && (bottom != NULL) && (top != bottom))
-			{
-				bottom->next->prev = NULL;
-				top->next = bottom;
-				bottom->next = NULL;
-				bottom->prev = top;
-			}
+			bottom->next->prev = NULL;
+			top->next = bottom;
+			bottom->next = NULL;
+			bottom->prev = top;
 		}
 	}
 	(void)line_number;

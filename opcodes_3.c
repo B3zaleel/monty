@@ -8,21 +8,12 @@
 void mty_op_stack(stack_t **stack, unsigned int line_number)
 {
 	char data_mode = *get_data_mode();
-	stack_t *top_s = NULL, *top_q = NULL;
-	int tmp;
 
 	(void)line_number;
+	(void)stack;
 	if (data_mode == DF_FIFO)
 	{
-		top_q = get_top_element(stack);
 		*get_data_mode() = DF_LIFO;
-		top_s = get_top_element(stack);
-		if ((top_q != NULL) && (top_s != NULL))
-		{
-			tmp = top_q->n;
-			top_q->n = top_s->n;
-			top_s->n = tmp;
-		}
 	}
 }
 
@@ -34,20 +25,11 @@ void mty_op_stack(stack_t **stack, unsigned int line_number)
 void mty_op_queue(stack_t **stack, unsigned int line_number)
 {
 	char data_mode = *get_data_mode();
-	stack_t *top_s = NULL, *top_q = NULL;
-	int tmp;
 
 	(void)line_number;
+	(void)stack;
 	if (data_mode == DF_LIFO)
 	{
-		top_s = get_top_element(stack);
 		*get_data_mode() = DF_FIFO;
-		top_q = get_top_element(stack);
-		if ((top_s != NULL) && (top_q != NULL))
-		{
-			tmp = top_q->n;
-			top_q->n = top_s->n;
-			top_s->n = tmp;
-		}
 	}
 }
